@@ -26,3 +26,15 @@ Just like any other cmake based project::
     make install
 
 Look into the ``spkg-install`` file for an example.
+
+
+Compile for android 
+-------------------
+
+    export ANDROID_STANDALONE_TOOLCHAIN=${TOOLCHAIN}
+    cmake ANDROID_ARGS="-DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake \
+        -DANDROID_TOOLCHAIN=clang \
+        -DANDROID_ABI=${ANDROID_ARCH_ABI}" .
+
+    make clean && make -j4 && make DESTDIR="${TOOLCHAIN}/sysroot" install || exit 1 

@@ -49,3 +49,7 @@ install(TARGETS uuid
 install(FILES uuid.h uuidd.h uuidP.h
     DESTINATION include/uuid
     )
+ # Produce a pkg-config file
+configure_file("../uuid.pc.in" "uuid.pc" @ONLY)
+install(FILES "uuid.pc"
+            DESTINATION "lib/pkgconfig")
